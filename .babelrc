@@ -1,0 +1,13 @@
+{
+  "presets": [
+    "react",
+    [
+      "env",
+      {
+        "targets": {
+          "browers": ["last 2 versions"]
+        }
+      }
+    ]
+  ]
+}
