@@ -7,11 +7,12 @@
   "license": "MIT",
   "scripts": {
     "watch": "webpack --watch",
-    "server": "./node_modules/.bin/webpack-dev-server"
+    "server": "webpack-dev-server"
   },
   "dependencies": {
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
