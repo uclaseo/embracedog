@@ -6,6 +6,7 @@ const Landing = () => (
     <h1>Hello World</h1>
     <h2>Let's go to Dogs</h2>
     <Link to="/dogs">DOGS</Link>
+    <Link to="/details/:id">PATTERN</Link>
   </div>
 );
 
