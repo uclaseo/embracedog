@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import { shape, string, number } from 'prop-types';
 import axios from 'axios';
+import styled from 'styled-components';
 
+const Wrapper = styled.div`
+  width: 25%;
+  border: 2px solid #333;
+  border-radius: 4px;
+  margin-bottom: 25px;
+  overflow: hidden;
+`;
+
+const Image = styled.img`
+  width: 100%;
+  float: left;
+`;
 const URL = `https://dog.ceo/api/`;
 
 class MapDogs extends Component {
@@ -12,10 +25,11 @@ class MapDogs extends Component {
 
   render() {
     return (
-      <div className="mapping-dogs">
-        <img src={this.props.dog} />
-        <div>===========================</div>
-      </div>
+      <Wrapper>
+        <div className="mapping-dogs">
+          <Image src={this.props.dog} />
+        </div>
+      </Wrapper>
     );
   }
 }

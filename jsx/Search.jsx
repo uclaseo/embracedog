@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class Search extends Component {
   constructor(props) {
@@ -37,7 +38,10 @@ class Search extends Component {
           type="text"
           placeholder="type dog breed"
         />
-        <Link to="/dogs">Search</Link>
+
+        <Link to="/dogs">
+          <RaisedButton label="Search" />
+        </Link>
       </div>
     );
   }
