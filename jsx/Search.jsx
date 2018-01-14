@@ -3,27 +3,35 @@ import { setSearchTerm } from './actionCreators.js';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class Search extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      redirect: false
+    };
     this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
-    this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
   }
-
   handleSearchTermChange(event) {
     this.props.setSearchTerm(event.target.value);
   }
-  handleOnClick() {
-    console.log('clicked');
+  handleEnter(event) {
+    if (event.key === 'Enter') {
+      this.setState({
+        redirect: true
+      });
+    }
   }
-
   render() {
+    if (this.state.redirect) {
+      return <Redirect push to="/dogs" />;
+    }
     return (
       <div>
-        {this.props.searchTerm}
         <input
+          onKeyPress={this.handleEnter}
           onChange={this.handleSearchTermChange}
           value={this.props.searchTerm}
           type="text"

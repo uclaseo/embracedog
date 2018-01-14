@@ -4,15 +4,7 @@ import { connect } from 'react-redux';
 import { setSearchTerm } from './actionCreators';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
-
-const dummyData = {
-  dogs: [
-    { type: 'dog', name: 'shitdog', age: 15 },
-    { type: 'cat', name: 'catshit', age: 20 },
-    { type: 'lion', name: 'lionking', age: 30 },
-    { type: 'tiger', name: 'kingtiger', age: 45 }
-  ]
-};
+import { Link } from 'react-router-dom';
 
 const URL = `https://dog.ceo/api`;
 
@@ -41,13 +33,12 @@ class Dogs extends Component {
 
   handleSearchTermChange(event) {
     this.props.setSearchTerm(event.target.value);
-    console.log(this.props.searchTerm);
   }
 
   render() {
     return (
       <div className="dogs">
-        <input onChange={this.handleSearchTermChange} value={this.props.searchTerm} type="text" placeholder="put dog" />
+        <Link to="/">Back</Link>
         <h1>{this.props.searchTerm}</h1>
         <div>{this.state.images.map((dog, index) => <MapDogs key={index} dog={dog} />)}</div>
       </div>

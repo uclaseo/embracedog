@@ -8,7 +8,6 @@ const HelloWorld = () => (
     <h1>Welcome to Dog World</h1>
     <Search />
     <RandomDog />
-    <Link to="/dogs">DOGS</Link>
   </div>
 );
 
