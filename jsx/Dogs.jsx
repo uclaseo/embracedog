@@ -21,14 +21,19 @@ class Dogs extends Component {
     this.fetchDogImages(this.props.searchTerm);
   }
   fetchDogImages(breed) {
-    axios.get(`${URL}/breed/${breed}/images`).then(response => {
-      for (let i = 0; i < 10; i++) {
-        this.setState({
-          images: [...this.state.images, response.data.message[i]]
-        });
-      }
-      console.log(this.state.images);
-    });
+    axios
+      .get(`${URL}/breed/${breed}/images`)
+      .then(response => {
+        const random = Math.floor(Math.random() * response.data.message.length - 10);
+        for (let i = random; i < random + 10; i++) {
+          this.setState({
+            images: [...this.state.images, response.data.message[i]]
+          });
+        }
+      })
+      .catch(error => {
+        console.log('(Dogs.jsx) fetchDogImages error: ', error);
+      });
   }
 
   handleSearchTermChange(event) {
@@ -36,6 +41,14 @@ class Dogs extends Component {
   }
 
   render() {
+    if (this.state.images[0] === 'B' || !this.state.images[0]) {
+      return (
+        <div>
+          <div>Breed Not Found. Try Again!</div>
+          <Link to="/">Back</Link>
+        </div>
+      );
+    }
     return (
       <div className="dogs">
         <Link to="/">Back</Link>
