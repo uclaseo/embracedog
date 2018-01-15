@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import RaisedButton from 'material-ui/RaisedButton';
+import { Input, Button } from '../style/style.js';
 
 class Search extends Component {
   constructor(props) {
@@ -30,17 +30,16 @@ class Search extends Component {
       return <Redirect push to="/dogs" />;
     }
     return (
-      <div>
-        <input
+      <div className="search text-center">
+        <Input
           onKeyPress={this.handleEnter}
           onChange={this.handleSearchTermChange}
           value={this.props.searchTerm}
           type="text"
           placeholder="type dog breed"
         />
-
         <Link to="/dogs">
-          <RaisedButton label="Search" />
+          <Button>Search</Button>
         </Link>
       </div>
     );

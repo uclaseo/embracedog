@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import MapDogs from './MapDogs.jsx';
+import Dog from './Dog.jsx';
 import { connect } from 'react-redux';
 import { setSearchTerm } from './actionCreators';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
-const URL = `https://dog.ceo/api`;
+import { Wrapper, Button } from '../style/style.js';
+import { DOG_BASE_URL } from './apiConstant';
 
 class Dogs extends Component {
   constructor(props) {
@@ -22,10 +22,10 @@ class Dogs extends Component {
   }
   fetchDogImages(breed) {
     axios
-      .get(`${URL}/breed/${breed}/images`)
+      .get(`${DOG_BASE_URL}/breed/${breed}/images`)
       .then(response => {
         const random = Math.floor(Math.random() * response.data.message.length - 10);
-        for (let i = random; i < random + 10; i++) {
+        for (let i = random; i < random + 12; i++) {
           this.setState({
             images: [...this.state.images, response.data.message[i]]
           });
@@ -43,18 +43,32 @@ class Dogs extends Component {
   render() {
     if (this.state.images[0] === 'B' || !this.state.images[0]) {
       return (
-        <div>
-          <div>Breed Not Found. Try Again!</div>
-          <Link to="/">Back</Link>
-        </div>
+        <Wrapper>
+          <div className="text-center">
+            <div>Breed Not Found. Try Again!</div>
+            <Link to="/">
+              <Button>Back</Button>
+            </Link>{' '}
+          </div>
+        </Wrapper>
       );
     }
     return (
-      <div className="dogs">
-        <Link to="/">Back</Link>
-        <h1>{this.props.searchTerm}</h1>
-        <div>{this.state.images.map((dog, index) => <MapDogs key={index} dog={dog} />)}</div>
-      </div>
+      <Wrapper>
+        <div className="dogs">
+          <h1 className="text-center">{this.props.searchTerm}</h1>
+          <div className="album">
+            <div className="container container-inside">
+              <div className="row">{this.state.images.map((dog, index) => <Dog key={index} dog={dog} />)}</div>
+            </div>
+          </div>
+          <div className="text-center">
+            <Link to="/">
+              <Button>Back</Button>
+            </Link>
+          </div>
+        </div>
+      </Wrapper>
     );
   }
 }

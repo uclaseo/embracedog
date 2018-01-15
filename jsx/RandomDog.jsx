@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
-const URL = `https://dog.ceo/api`;
+import { DOG_BASE_URL } from './apiConstant';
+import Loading from '../style/Loading';
 
 export default class RandomDog extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class RandomDog extends Component {
   }
 
   fetchRandomDog() {
-    axios.get(`${URL}/breeds/image/random`).then(response => {
+    axios.get(`${DOG_BASE_URL}/breeds/image/random`).then(response => {
       this.setState({
         loaded: true,
         breed: response.data.message.split('/')[5],
@@ -30,7 +30,7 @@ export default class RandomDog extends Component {
 
   renderDog() {
     return (
-      <div>
+      <div className="random-dog text-center">
         <img src={this.state.imageURL} />
         <h1>{this.state.breed}</h1>
       </div>
@@ -42,8 +42,8 @@ export default class RandomDog extends Component {
       return this.renderDog();
     }
     return (
-      <div>
-        <h1>Loading</h1>
+      <div className="random-dog text-center loading">
+        <Loading />
       </div>
     );
   }

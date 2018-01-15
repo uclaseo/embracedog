@@ -19,7 +19,7 @@ export default class App extends Component {
       <MuiThemeProvider>
         <BrowserRouter>
           <Provider store={store}>
-            <div>
+            <div className="app container-fluid">
               <Switch>
                 <Route exact path="/" component={HelloWorld} />
                 <Route exact path="/dogs" component={Dogs} />
