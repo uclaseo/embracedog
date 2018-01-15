@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Wrapper, Button } from '../style/style.js';
 import { DOG_BASE_URL } from './apiConstant';
+import Loading from '../style/Loading';
 
 class Dogs extends Component {
   constructor(props) {
@@ -41,6 +42,15 @@ class Dogs extends Component {
   }
 
   render() {
+    if (this.state.images.length === 0) {
+      return (
+        <Wrapper>
+          <div className="text-center">
+            <Loading />
+          </div>
+        </Wrapper>
+      );
+    }
     if (this.state.images[0] === 'B' || !this.state.images[0]) {
       return (
         <Wrapper>

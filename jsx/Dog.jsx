@@ -13,7 +13,7 @@ class Dog extends Component {
   render() {
     return (
       <div className="card">
-        <img className="img-fluid" alt="Responsive image" src={this.props.dog} />
+        <img className="img-fluid dog" alt="Responsive image" src={this.props.dog} />
       </div>
     );
   }

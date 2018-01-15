@@ -31,7 +31,7 @@ export default class RandomDog extends Component {
   renderDog() {
     return (
       <div className="random-dog text-center">
-        <img src={this.state.imageURL} />
+        <img className="dog" src={this.state.imageURL} />
         <h1>{this.state.breed}</h1>
       </div>
     );
